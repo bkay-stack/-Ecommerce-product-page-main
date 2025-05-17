@@ -1,0 +1,155 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo-Section */
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  /* outline: 1px solid green; */
+}
+
+.mobile-logo {
+  display: none;
+}
+
+/* Link */
+
+.header-menu ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+}
+
+.header-menu ul li a {
+  text-decoration: none;
+  color: var(--color-grayish-blue);
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+/* Hamburger-section */
+.hamburger {
+  display: block;
+  cursor: pointer;
+  z-index: 100;
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  background-color: transparent;
+}
+
+.hamburger-mobile {
+  display: none;
+}
+
+.hamburger-desktop {
+  display: none;
+}
+
+/* Profile */
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.avatar img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+/* Menu nav  */
+@media screen and (max-width: 568px) {
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  /* Logo mobile */
+  .logo-wrapper {
+    margin-right: 8rem;
+  }
+
+  /* Link */
+
+  .header-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: var(--color-white);
+    z-index: 10;
+    display: flex;
+
+    width: calc(80% - 2rem);
+    /* height: auto; */
+    transform: translateX(calc(-100% - 2rem));
+    transition: transform 0.3s ease-in-out;
+    flex-direction: column;
+    outline: 1px solid green;
+  }
+
+  .header-menu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 4rem;
+    padding: 1rem;
+  }
+
+  .header-menu ul li a {
+    list-style: none;
+    font-weight: bolder;
+    color: var(--color-very-dark-blue);
+    /* text-transform: uppercase; */
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  /* Class to toggle when hamburger is clicked */
+  .header-menu.active {
+    transform: translateX(0);
+  }
+
+  /* Hanburger */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    z-index: 100;
+    position: relative;
+  }
+
+  .hamburger-desktop {
+    display: block;
+  }
+
+  .hamburger-mobile {
+    display: none;
+  }
+
+  /* Profile */
+  .profile-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .avatar img {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    object-fit: contain;
+  }
+}
