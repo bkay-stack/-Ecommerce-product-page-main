@@ -1,7 +1,13 @@
+header {
+  width: 100%;
+  position: relative;
+}
+
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Logo-Section */
@@ -75,8 +81,10 @@ nav {
   }
 
   /* Logo mobile */
-  .logo-wrapper {
+  .header-logo {
     margin-right: 8rem;
+    position: relative;
+    z-index: -50;
   }
 
   /* Link */

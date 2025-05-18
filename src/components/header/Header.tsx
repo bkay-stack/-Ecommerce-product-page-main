@@ -7,18 +7,17 @@ import Hamburger from "../ham-menu/Hamburger";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Toggle Menu
   const handleToggle = () => {
     setIsOpen(!isOpen);
     console.log("clicked :", isOpen);
   };
 
+  // useEffect
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = "hidden";
   }, [isOpen]);
+
   return (
     <header className="header container">
       <nav>
