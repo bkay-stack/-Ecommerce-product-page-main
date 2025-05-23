@@ -1,0 +1,45 @@
+/* .sneakers-showcase */
+.sneakers-showcase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  flex-direction: column-reverse;
+}
+
+.carousel {
+  display: flex;
+  position: relative;
+}
+
+/* Visible */
+.hidden {
+  display: none;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1;
+  width: 1.4rem;
+  height: 1.4rem;
+  background-color: var(--color-white);
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.arrow-left img {
+  left: 0.5rem;
+}
+.arrow-right img {
+  right: 0.5rem;
+  /* width: 0.4rem; */
+  /* height: 0.4rem; */
+  background-color: var(--color-white);
+  /* padding: rem; */
+  /* transform: rotate(180deg); */
+}

@@ -15,12 +15,17 @@ const Header = () => {
 
   // useEffect
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+
+    // Logs for debugging
+    console.log("Body overflow:", document.body.style.overflow);
   }, [isOpen]);
 
   return (
     <header className="header container">
-      <nav>
+      {/* overlay */}
+      <div className={` ${isOpen ? "show-overlay" : "active-overlay"}`}></div>
+      <nav className="">
         {/* Hamburger menu */}
         <div
           className="hamburger-container hamburger hamburger-desktop"
@@ -58,7 +63,10 @@ const Header = () => {
         </div>
 
         {/* Hamburger menu */}
-        <div className="hamburger-container hamburger hamburger-mobile">
+        <div
+          className="hamburger-container hamburger hamburger-mobile"
+          onClick={handleToggle}
+        >
           <Hamburger />
         </div>
 
