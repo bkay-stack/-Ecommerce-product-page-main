@@ -9,13 +9,12 @@
   flex-direction: column-reverse;
 }
 
-/* large-screen */
-.larger-screen {
-  display: none;
-}
+/* Utility */
 
-.reduce {
-  outline: 1px solid red;
+.showcase-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* padding: 20px; */
 }
 
 /* sneaker-company */
@@ -188,11 +187,13 @@
 @media screen and (min-width: 768px) {
   .sneakers-showcase {
     flex-direction: row-reverse;
-    justify-content: space-between;
     align-items: center;
-
-    outline: 1px solid red;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem;
+    gap: 3rem;
   }
+
   .add-to-cart {
     display: flex;
   }
@@ -200,9 +201,9 @@
   .sneaker-company {
     margin-top: 0;
     padding: 2rem;
-    gap: 2rem;
+    /* gap: 2rem; */
     width: 100%;
-    max-width: 30rem;
+    /* max-width: 30rem; */
     height: 100%;
     background-color: var(--color-pale-orange);
   }
