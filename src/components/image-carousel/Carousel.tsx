@@ -21,7 +21,7 @@ export const Carousel = () => {
   return (
     <>
       {/* Large Screen View */}
-      <div className="sneakers-showcase showcase-container large-screen">
+      <div className="sneakers-showcase showcase-container ">
         {/* Sneaker Content */}
         <div className="sneaker-content ">
           <h3>Sneaker Company</h3>
@@ -36,7 +36,9 @@ export const Carousel = () => {
               <h4 className="init-price">$125.00</h4>
               <span className="discount">50%</span>
             </div>
-            <span className="old-price">$250.00</span>
+            <div className="old-price-wrapper">
+              <span className="old-price">$250.00</span>
+            </div>
           </div>
 
           {/* Add to Cart Section */}
@@ -47,21 +49,21 @@ export const Carousel = () => {
               <img src={plusIcon} alt="" className="plus" />
             </div>
             {/* <> */}
-            <div className="cart">
-              <button className="add-to-cart-btn">
-                <div className="cart-icon">
-                  <img src={cartIcon} alt="" />
-                </div>
-                <span>Add to cart</span>
-              </button>
-            </div>
+            {/* <div className="cart"> */}
+            <button className="add-to-cart-btn">
+              <div className="cart-icon">
+                <img src={cartIcon} alt="" />
+              </div>
+              <span>Add to cart</span>
+            </button>
+            {/* </div> */}
             {/* </> */}
           </div>
         </div>
 
         {/* Image Carousel */}
         <div className="carousel">
-          <div className="arrow-left">
+          <div className="arrow-left arrow-hidden">
             <img
               src={arrowIMGright}
               alt=""
@@ -74,16 +76,31 @@ export const Carousel = () => {
               key={img.id}
               src={img.src}
               alt={img.alt}
-              className={`${index === currentIndex ? "active" : "hidden"}`}
+              className={` carousel-img ${
+                index === currentIndex ? "active" : "hidden"
+              }`}
             />
           ))}
-          <div className="arrow-right">
+          <div className="arrow-right arrow-hidden">
             <img
               src={arrowIMGleft}
               alt=""
               className="arrow "
               onClick={() => handleNext()}
             />
+          </div>
+          <div className="thumbnails">
+            {productImages.map((img, index) => (
+              <div
+                key={img.id}
+                className={`thumbnail-wrapper ${
+                  index === currentIndex ? "active" : ""
+                }`}
+                onClick={() => setCurrentIndex(index)}
+              >
+                <img src={img.thumbnail} alt={img.alt} className="thumbnail" />
+              </div>
+            ))}
           </div>
         </div>
       </div>
