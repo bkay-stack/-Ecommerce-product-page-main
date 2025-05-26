@@ -98,7 +98,7 @@ export const Carousel = () => {
                 }`}
                 onClick={() => setCurrentIndex(index)}
               >
-                <img src={img.thumbnail} alt={img.alt} className="thumbnail" />
+                <img src={img.src} alt={img.alt} className="thumbnail" />
               </div>
             ))}
           </div>
