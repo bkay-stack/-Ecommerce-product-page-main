@@ -21,6 +21,7 @@ export const Carousel = () => {
   return (
     <>
       {/* Large Screen View */}
+
       <div className="sneakers-showcase showcase-container ">
         {/* Sneaker Content */}
         <div className="sneaker-content ">
@@ -98,13 +99,59 @@ export const Carousel = () => {
                 }`}
                 onClick={() => setCurrentIndex(index)}
               >
-                <img src={img.src} alt={img.alt} className="thumbnail" />
+                <img src={img.thumbnail} alt={img.alt} className="thumbnail" />
               </div>
             ))}
           </div>
         </div>
       </div>
-      {/* Mobile View */}
+
+      {/* Modal/lightbox */}
+
+      <div className="modal">
+        {/* Image Carousel */}
+        <div className="carousel">
+          <div className="arrow-left arrow-hidden">
+            <img
+              src={arrowIMGright}
+              alt=""
+              className="arrow arrow-left"
+              onClick={() => handlePrev()}
+            />
+          </div>
+          {productImages.map((img, index) => (
+            <img
+              key={img.id}
+              src={img.src}
+              alt={img.alt}
+              className={` carousel-img ${
+                index === currentIndex ? "active" : "hidden"
+              }`}
+            />
+          ))}
+          <div className="arrow-right arrow-hidden">
+            <img
+              src={arrowIMGleft}
+              alt=""
+              className="arrow "
+              onClick={() => handleNext()}
+            />
+          </div>
+          <div className="thumbnails">
+            {productImages.map((img, index) => (
+              <div
+                key={img.id}
+                className={`thumbnail-wrapper ${
+                  index === currentIndex ? "active" : ""
+                }`}
+                onClick={() => setCurrentIndex(index)}
+              >
+                <img src={img.thumbnail} alt={img.alt} className="thumbnail" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 };

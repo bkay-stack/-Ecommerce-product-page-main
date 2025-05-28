@@ -87,7 +87,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     /* z-index: 5; */
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
   }
 
   /* overlay */
@@ -129,7 +129,7 @@ nav {
     transform: translateX(calc(-100% - 2rem));
     transition: transform 0.3s ease-in-out;
     flex-direction: column;
-    outline: 1px solid green;
+    /* outline: 1px solid green; */
   }
 
   .header-menu ul {
