@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./carosusel.styles.css";
 import { productImages } from "../../data/productImages";
 import arrowIMGleft from "../../assets/images/icon-next.svg";
@@ -6,9 +6,12 @@ import arrowIMGright from "../../assets/images/icon-previous.svg";
 import plusIcon from "../../assets/images/icon-plus.svg";
 import minusIcon from "../../assets/images/icon-minus.svg";
 import cartIcon from "../../assets/images/icon-cart.svg";
+import closeIcon from "../../assets/images/icon-close.svg";
 export const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Function to handle next and previous image navigation
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % productImages.length);
   };
@@ -17,6 +20,13 @@ export const Carousel = () => {
       (prev) => (prev - 1 + productImages.length) % productImages.length
     );
   };
+
+  // Function to handle thumbnail click
+  const handleThumbnailClick = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  // useEffect
 
   return (
     <>
@@ -90,7 +100,7 @@ export const Carousel = () => {
               onClick={() => handleNext()}
             />
           </div>
-          <div className="thumbnails">
+          <div className="thumbnails" onClick={handleThumbnailClick}>
             {productImages.map((img, index) => (
               <div
                 key={img.id}
@@ -108,14 +118,24 @@ export const Carousel = () => {
 
       {/* Modal/lightbox */}
 
-      <div className="modal">
+      {/* {currentIndex === 0 && ( */}
+      <div className={`modal ${isModalOpen ? "open" : ""}`}>
+        <div
+          className="close-modal"
+          onClick={() => {
+            console.log("Close modal");
+            handleThumbnailClick();
+          }}
+        >
+          <img src={closeIcon} alt="" />
+        </div>
         {/* Image Carousel */}
         <div className="carousel">
-          <div className="arrow-left arrow-hidden">
+          <div className="arrow-left-modal arrow-hidden-modal">
             <img
               src={arrowIMGright}
               alt=""
-              className="arrow arrow-left"
+              className="arrow-modal arrow-left"
               onClick={() => handlePrev()}
             />
           </div>
@@ -129,11 +149,11 @@ export const Carousel = () => {
               }`}
             />
           ))}
-          <div className="arrow-right arrow-hidden">
+          <div className="arrow-right-modal arrow-hidden-modal">
             <img
               src={arrowIMGleft}
               alt=""
-              className="arrow "
+              className="arrow-modal "
               onClick={() => handleNext()}
             />
           </div>
@@ -152,6 +172,7 @@ export const Carousel = () => {
           </div>
         </div>
       </div>
+      {/* )} */}
     </>
   );
 };
