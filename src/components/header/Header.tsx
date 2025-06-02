@@ -4,7 +4,7 @@ import logo from "../../assets/images/logo.svg";
 import profileImg from "../../assets/images/image-avatar.png";
 import cartImg from "../../assets/images/icon-cart.svg";
 import Hamburger from "../ham-menu/Hamburger";
-import { Cart } from "../cart/Cart";
+// import { Cart } from "../cart/Cart";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -89,8 +89,6 @@ const Header = () => {
           </div>
         </nav>
       </header>
-
-      <Cart />
     </>
   );
 };

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./carosusel.styles.css";
 import { productImages } from "../../data/productImages";
 import arrowIMGleft from "../../assets/images/icon-next.svg";
@@ -8,26 +7,24 @@ import minusIcon from "../../assets/images/icon-minus.svg";
 import cartIcon from "../../assets/images/icon-cart.svg";
 // import closeIcon from "../../assets/images/icon-close.svg";
 import { Modal } from "../modal/Modal";
-export const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // Function to handle next and previous image navigation
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % productImages.length);
-  };
-  const handlePrev = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + productImages.length) % productImages.length
-    );
-  };
+// import { Cart } from "../cart/Cart";
 
-  // Function to handle thumbnail click
-  const handleThumbnailClick = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
-  // useEffect
-
+type CarouselProps = {
+  currentIndex: number;
+  setCurrentIndex: (index: number) => void;
+  handleNext: () => void;
+  handlePrev: () => void;
+  handleThumbnailClick: () => void;
+  isModalOpen: boolean;
+};
+export const Carousel = ({
+  currentIndex,
+  setCurrentIndex,
+  handleNext,
+  handlePrev,
+  handleThumbnailClick,
+  isModalOpen,
+}: CarouselProps) => {
   return (
     <>
       {/* Large Screen View */}
@@ -134,6 +131,8 @@ export const Carousel = () => {
           productImages={productImages}
         />
       )}
+
+      {/* <Cart /> */}
     </>
   );
 };

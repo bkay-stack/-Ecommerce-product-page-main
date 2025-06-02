@@ -1,14 +1,34 @@
 import React from "react";
 import "./cart.styles.css";
-export const Cart = () => {
+import { productImages } from "../../data/productImages";
+
+type CartProps = {
+  currentIndex: number;
+};
+
+// type Cart annotation
+export const Cart: React.FC<CartProps> = ({ currentIndex }) => {
   return (
     <div className="cart-container">
       <div className="cart-content">
-        <h2 className="cart-title">Your Cart</h2>
-        <p className="cart-empty-message">Your cart is currently empty.</p>
-        <p className="cart-instructions">
-          Browse our products and add items to your cart!
-        </p>
+        <h2 className="cart-title">Cart</h2>
+        <div className="cart-line"></div>
+        <div className="cart-items">
+          {productImages.map((imag, index) => (
+            <div
+              className={`cart-item ${
+                index === currentIndex ? "active" : "hidden"
+              }`}
+              key={imag.id}
+            >
+              <img
+                src={imag.thumbnail}
+                alt={imag.alt}
+                className="cart-item-image"
+              />
+            </div>
+          ))}
+        </div>
         <button className="cart-button">Continue Shopping</button>
       </div>
     </div>
