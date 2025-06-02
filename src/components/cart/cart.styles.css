@@ -1,0 +1,13 @@
+.cart-container {
+  position: relative;
+}
+
+.cart-content {
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  position: absolute;
+  z-index: 5;
+  background-color: var(--color-white);
+  margin: 1rem;
+  height: 40vh;
+}

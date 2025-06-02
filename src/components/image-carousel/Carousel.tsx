@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./carosusel.styles.css";
 import { productImages } from "../../data/productImages";
 import arrowIMGleft from "../../assets/images/icon-next.svg";
@@ -6,11 +6,11 @@ import arrowIMGright from "../../assets/images/icon-previous.svg";
 import plusIcon from "../../assets/images/icon-plus.svg";
 import minusIcon from "../../assets/images/icon-minus.svg";
 import cartIcon from "../../assets/images/icon-cart.svg";
-import closeIcon from "../../assets/images/icon-close.svg";
+// import closeIcon from "../../assets/images/icon-close.svg";
+import { Modal } from "../modal/Modal";
 export const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   // Function to handle next and previous image navigation
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % productImages.length);
@@ -83,14 +83,19 @@ export const Carousel = () => {
             />
           </div>
           {productImages.map((img, index) => (
-            <img
-              key={img.id}
-              src={img.src}
-              alt={img.alt}
-              className={` carousel-img ${
+            <div
+              className={`carousel-wrapper ${
                 index === currentIndex ? "active" : "hidden"
               }`}
-            />
+              key={img.id}
+            >
+              <img
+                key={img.id}
+                src={img.src}
+                alt={img.alt}
+                className={` carousel-img`}
+              />
+            </div>
           ))}
           <div className="arrow-right arrow-hidden">
             <img
@@ -118,61 +123,17 @@ export const Carousel = () => {
 
       {/* Modal/lightbox */}
 
-      {/* {currentIndex === 0 && ( */}
-      <div className={`modal ${isModalOpen ? "open" : ""}`}>
-        <div
-          className="close-modal"
-          onClick={() => {
-            console.log("Close modal");
-            handleThumbnailClick();
-          }}
-        >
-          <img src={closeIcon} alt="" />
-        </div>
-        {/* Image Carousel */}
-        <div className="carousel">
-          <div className="arrow-left-modal arrow-hidden-modal">
-            <img
-              src={arrowIMGright}
-              alt=""
-              className="arrow-modal arrow-left"
-              onClick={() => handlePrev()}
-            />
-          </div>
-          {productImages.map((img, index) => (
-            <img
-              key={img.id}
-              src={img.src}
-              alt={img.alt}
-              className={` carousel-img ${
-                index === currentIndex ? "active" : "hidden"
-              }`}
-            />
-          ))}
-          <div className="arrow-right-modal arrow-hidden-modal">
-            <img
-              src={arrowIMGleft}
-              alt=""
-              className="arrow-modal "
-              onClick={() => handleNext()}
-            />
-          </div>
-          <div className="thumbnails">
-            {productImages.map((img, index) => (
-              <div
-                key={img.id}
-                className={`thumbnail-wrapper ${
-                  index === currentIndex ? "active" : ""
-                }`}
-                onClick={() => setCurrentIndex(index)}
-              >
-                <img src={img.thumbnail} alt={img.alt} className="thumbnail" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      {/* )} */}
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          handleThumbnailClick={handleThumbnailClick}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          handleNext={handleNext}
+          handlePrev={handlePrev}
+          productImages={productImages}
+        />
+      )}
     </>
   );
 };

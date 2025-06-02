@@ -4,6 +4,7 @@ import logo from "../../assets/images/logo.svg";
 import profileImg from "../../assets/images/image-avatar.png";
 import cartImg from "../../assets/images/icon-cart.svg";
 import Hamburger from "../ham-menu/Hamburger";
+import { Cart } from "../cart/Cart";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,71 +23,75 @@ const Header = () => {
   }, [isOpen]);
 
   return (
-    <header className="header container">
-      {/* overlay */}
-      <div className={` ${isOpen ? "show-overlay" : "active-overlay"}`}></div>
-      <nav className="">
-        {/* Hamburger menu */}
-        <div
-          className="hamburger-container hamburger hamburger-desktop"
-          onClick={handleToggle}
-        >
-          <Hamburger />
-        </div>
+    <>
+      <header className="header container">
+        {/* overlay */}
+        <div className={` ${isOpen ? "show-overlay" : "active-overlay"}`}></div>
+        <nav className="">
+          {/* Hamburger menu */}
+          <div
+            className="hamburger-container hamburger hamburger-desktop"
+            onClick={handleToggle}
+          >
+            <Hamburger />
+          </div>
 
-        {/* Logo */}
-        <div className="logo-wrapper">
-          <div className="header-logo desktop-logo">
+          {/* Logo */}
+          <div className="logo-wrapper">
+            <div className="header-logo desktop-logo">
+              <img src={logo} alt="" />
+            </div>
+
+            {/* nav links */}
+            <div className={`header-menu ${isOpen ? "active" : ""}`}>
+              <ul>
+                <li>
+                  <a href="#collections">Collections</a>
+                </li>
+                <li>
+                  <a href="#men">Men</a>
+                </li>
+                <li>
+                  <a href="#women">Women</a>
+                </li>
+                <li>
+                  <a href="#about">About</a>
+                </li>
+                <li>
+                  <a href="#contact">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Hamburger menu */}
+          <div
+            className="hamburger-container hamburger hamburger-mobile"
+            onClick={handleToggle}
+          >
+            <Hamburger />
+          </div>
+
+          {/* Mobile logo */}
+
+          <div className="header-logo mobile-logo">
             <img src={logo} alt="" />
           </div>
 
-          {/* nav links */}
-          <div className={`header-menu ${isOpen ? "active" : ""}`}>
-            <ul>
-              <li>
-                <a href="#collections">Collections</a>
-              </li>
-              <li>
-                <a href="#men">Men</a>
-              </li>
-              <li>
-                <a href="#women">Women</a>
-              </li>
-              <li>
-                <a href="#about">About</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
-              </li>
-            </ul>
+          {/* Profile */}
+          <div className="profile-section">
+            <div className="cart">
+              <img src={cartImg} alt="" />
+            </div>
+            <div className="avatar">
+              <img src={profileImg} alt="" />
+            </div>
           </div>
-        </div>
+        </nav>
+      </header>
 
-        {/* Hamburger menu */}
-        <div
-          className="hamburger-container hamburger hamburger-mobile"
-          onClick={handleToggle}
-        >
-          <Hamburger />
-        </div>
-
-        {/* Mobile logo */}
-
-        <div className="header-logo mobile-logo">
-          <img src={logo} alt="" />
-        </div>
-
-        {/* Profile */}
-        <div className="profile-section">
-          <div className="cart">
-            <img src={cartImg} alt="" />
-          </div>
-          <div className="avatar">
-            <img src={profileImg} alt="" />
-          </div>
-        </div>
-      </nav>
-    </header>
+      <Cart />
+    </>
   );
 };
 
