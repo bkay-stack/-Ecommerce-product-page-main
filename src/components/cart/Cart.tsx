@@ -5,31 +5,46 @@ import { productImages } from "../../data/productImages";
 type CartProps = {
   currentIndex: number;
 };
-
-// type Cart annotation
+// Type annotation for props
 export const Cart: React.FC<CartProps> = ({ currentIndex }) => {
   return (
     <div className="cart-container">
       <div className="cart-content">
-        <h2 className="cart-title">Cart</h2>
-        <div className="cart-line"></div>
+        <div className="cart-title">
+          <h2>Cart</h2>
+          <div className="cart-line"></div>
+        </div>
         <div className="cart-items">
-          {productImages.map((imag, index) => (
+          {productImages.map((image, index) => (
             <div
               className={`cart-item ${
                 index === currentIndex ? "active" : "hidden"
               }`}
-              key={imag.id}
+              key={image.id}
             >
               <img
-                src={imag.thumbnail}
-                alt={imag.alt}
+                src={image.thumbnail}
+                alt={image.alt}
                 className="cart-item-image"
               />
             </div>
           ))}
+          <div className="cart-item-details">
+            <span className="cart-item-name">
+              Fall Limited Edition Sneakers
+            </span>
+            <p className="cart-item-price">
+              $125.00 x 3 <span className="total-price">$125.00</span>
+            </p>
+          </div>
+          <div className="delete-svg">
+            <img src="/images/icon-delete.svg" alt="" />
+          </div>
         </div>
-        <button className="cart-button">Continue Shopping</button>
+
+        <div className="btn-wrapper">
+          <button className="cart-button">Checkout</button>
+        </div>
       </div>
     </div>
   );

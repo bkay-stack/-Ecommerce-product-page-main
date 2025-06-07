@@ -4,8 +4,12 @@ import logo from "../../assets/images/logo.svg";
 import profileImg from "../../assets/images/image-avatar.png";
 import cartImg from "../../assets/images/icon-cart.svg";
 import Hamburger from "../ham-menu/Hamburger";
-// import { Cart } from "../cart/Cart";
-const Header = () => {
+import { Cart } from "../cart/Cart";
+
+type HeaderProps = {
+  currentIndex: number;
+};
+const Header = ({ currentIndex }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Toggle Menu
@@ -83,11 +87,13 @@ const Header = () => {
             <div className="cart">
               <img src={cartImg} alt="" />
             </div>
+
             <div className="avatar">
               <img src={profileImg} alt="" />
             </div>
           </div>
         </nav>
+        <Cart currentIndex={currentIndex} />
       </header>
     </>
   );
