@@ -10,12 +10,20 @@ import { Modal } from "../modal/Modal";
 // import { Cart } from "../cart/Cart";
 
 type CarouselProps = {
+  // Corousel functionality
   currentIndex: number;
   setCurrentIndex: (index: number) => void;
   handleNext: () => void;
   handlePrev: () => void;
   handleThumbnailClick: () => void;
   isModalOpen: boolean;
+
+  // Quantity management
+  quantity: number;
+  increaseQuantity: (id: number) => void;
+  decreaseQuantity: (id: number) => void;
+
+  // Add to cart functionality
 };
 export const Carousel = ({
   currentIndex,
@@ -24,7 +32,12 @@ export const Carousel = ({
   handlePrev,
   handleThumbnailClick,
   isModalOpen,
-}: CarouselProps) => {
+  //  cartItems,
+  quantity,
+  increaseQuantity,
+  decreaseQuantity,
+}: // Add to cart functionality
+CarouselProps) => {
   return (
     <>
       {/* Large Screen View */}
@@ -52,9 +65,27 @@ export const Carousel = ({
           {/* Add to Cart Section */}
           <div className="add-to-cart">
             <div className="quantity">
-              <img src={minusIcon} alt="" className="minus" />
-              <span className="number">0</span>
-              <img src={plusIcon} alt="" className="plus" />
+              <img
+                src={minusIcon}
+                alt=""
+                className="minus"
+                onClick={() => {
+                  console.log("Decrease quantity");
+                  decreaseQuantity(1);
+                }}
+              />
+              <span className="number">
+                {(console.log(quantity), quantity)}
+              </span>
+              <img
+                src={plusIcon}
+                alt=""
+                className="plus"
+                onClick={() => {
+                  console.log("Increase quantity");
+                  increaseQuantity(1);
+                }}
+              />
             </div>
             {/* <> */}
             {/* <div className="cart"> */}

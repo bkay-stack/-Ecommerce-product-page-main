@@ -32,34 +32,86 @@ function App() {
   };
 
   // Add to cart functionality can be added here later
-  const addToCart = (item: CartItem) => {};
+  const addToCart = (id: number) => {
+    setCartItems((prev) => {
+      const existingItem = prev.find((item) => item.id === id);
+      if (existingItem) {
+        // Item exists - increase quantity
+        return prev.map((item) =>
+          item.id === id
+            ? { ...item, price: 125, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        // Item doesn't exist - add it with quantity 1
+        return [
+          ...prev,
+          {
+            id,
+            src: productImages[0].src, // assuming first product
+            alt: productImages[0].alt,
+            thumbnail: productImages[0].thumbnail,
+            price: 125,
+            quantity: 1, // start with quantity 1
+          },
+        ];
+      }
+    });
+  };
+
+  // Get quantity of item in cart by id
+  const getQuantity = (id: number) => {
+    return cartItems.find((item) => item.id === id)?.quantity || 0;
+  };
 
   // Increase item quantity in cart
   const increaseQuantity = (id: number) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+    setCartItems((prev) => {
+      const existingItem = prev.find((item) => item.id === id);
+
+      if (existingItem) {
+        // Item exists - increase quantity
+        return prev.map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        // Item doesn't exist - add it with quantity 1
+        return [
+          ...prev,
+          {
+            id,
+            src: productImages[0].src, // assuming first product
+            alt: productImages[0].alt,
+            thumbnail: productImages[0].thumbnail,
+            price: 125,
+            quantity: 1, // start with 0 quantity
+          },
+        ];
+      }
+    });
   };
 
-  // Decrease item quantity in cart
   const decreaseQuantity = (id: number) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-      )
+    setCartItems(
+      (prev) =>
+        prev
+          .map((item) =>
+            item.id === id
+              ? { ...item, quantity: Math.max(0, item.quantity - 1) }
+              : item
+          )
+          .filter((item) => item.quantity > 0) // Remove items with 0 quantity
     );
   };
 
   // Delete item from cart
-  const removeFromCart = (id: number) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
+  // const removeFromCart = (id: number) => {
+  //   setCartItems((prev) => prev.filter((item) => item.id !== id));
+  // };
 
   return (
     <>
-      <Header currentIndex={currentIndex} removeFromCart={removeFromCart} />
+      <Header currentIndex={currentIndex} />
       <Carousel
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
@@ -67,6 +119,9 @@ function App() {
         handlePrev={handlePrev}
         handleThumbnailClick={handleThumbnailClick}
         isModalOpen={isModalOpen}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+        quantity={getQuantity(1)}
       />
     </>
   );
