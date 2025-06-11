@@ -20,10 +20,13 @@ type CarouselProps = {
 
   // Quantity management
   quantity: number;
+  setQuantity: (quantity: number) => void;
+  quantityAddToCart: number;
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
 
   // Add to cart functionality
+  addToCart: (id: number, quantity: number) => void;
 };
 export const Carousel = ({
   currentIndex,
@@ -34,10 +37,10 @@ export const Carousel = ({
   isModalOpen,
   //  cartItems,
   quantity,
-  increaseQuantity,
-  decreaseQuantity,
-}: // Add to cart functionality
-CarouselProps) => {
+
+  setQuantity,
+  addToCart,
+}: CarouselProps) => {
   return (
     <>
       {/* Large Screen View */}
@@ -54,7 +57,7 @@ CarouselProps) => {
           </p>
           <div className="price-content">
             <div className="price">
-              <h4 className="init-price">$125.00</h4>
+              <h4 className="init-price">${(125 * quantity).toFixed(2)}</h4>
               <span className="discount">50%</span>
             </div>
             <div className="old-price-wrapper">
@@ -69,22 +72,14 @@ CarouselProps) => {
                 src={minusIcon}
                 alt=""
                 className="minus"
-                onClick={() => {
-                  console.log("Decrease quantity");
-                  decreaseQuantity(1);
-                }}
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
               />
-              <span className="number">
-                {(console.log(quantity), quantity)}
-              </span>
+              <span className="number">{quantity}</span>
               <img
                 src={plusIcon}
                 alt=""
                 className="plus"
-                onClick={() => {
-                  console.log("Increase quantity");
-                  increaseQuantity(1);
-                }}
+                onClick={() => setQuantity(quantity + 1)}
               />
             </div>
             {/* <> */}
@@ -93,7 +88,7 @@ CarouselProps) => {
               <div className="cart-icon">
                 <img src={cartIcon} alt="" />
               </div>
-              <span>Add to cart</span>
+              <span onClick={() => addToCart(1, quantity)}>Add to cart</span>
             </button>
             {/* </div> */}
             {/* </> */}

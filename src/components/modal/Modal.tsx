@@ -55,7 +55,7 @@ export const Modal = ({
             key={img.id}
             src={img.src}
             alt={img.alt}
-            className={` carousel-img ${
+            className={` carousel-img-modal ${
               index === currentIndex ? "active" : "hidden"
             }`}
           />

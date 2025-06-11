@@ -15,6 +15,16 @@
     transition: opacity 0.3s ease-in-out;
   }
 
+  /*  carousel img */
+  .carousel-img-modal {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+
+    outline: 1px solid red;
+  }
+
   /* Modal mobile */
 
   /* close modal mobile */
@@ -81,9 +91,9 @@
 
   .close-modal {
     position: absolute;
-    top: 8rem;
+    top: 6rem;
     right: 34rem;
-    left: 58.3rem;
+    left: 59.1rem;
     cursor: pointer;
     z-index: 2;
     width: 2rem;

@@ -93,7 +93,7 @@ const Header = ({ currentIndex }: HeaderProps) => {
             </div>
           </div>
         </nav>
-        <Cart currentIndex={currentIndex} />
+        {/* <Cart currentIndex={currentIndex} /> */}
       </header>
     </>
   );

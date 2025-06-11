@@ -167,13 +167,15 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  margin: 0;
+  /* outline: 1px solid red; */
 }
 
 .carousel-img {
-  width: 400px;
-  height: 320px;
+  width: 350px;
+  /* height: 320px; */
   object-fit: cover;
-  max-width: 100%;
+  width: 100%;
 }
 
 /* Visible */
@@ -273,12 +275,12 @@
 
   /* Carousel section */
   .carousel-img {
-    max-width: 700px;
-    height: auto;
-    max-height: 350px;
+    max-width: 1600px;
+    /* height: auto; */
+    max-height: 650px;
     object-fit: contain;
     border-radius: 10px;
-    margin: 0;
+    /* width: 100%; */
   }
 
   .arrow-hidden {
