@@ -8,10 +8,21 @@ import { Cart } from "../cart/Cart";
 
 type HeaderProps = {
   currentIndex: number;
+  quantity: number;
+  getTotal: () => number;
+  cartItems: CartItem[];
+  removeItem: (id: number) => void;
 };
-const Header = ({ currentIndex }: HeaderProps) => {
+const Header = ({
+  currentIndex,
+  cartItems,
+  getTotal,
+  quantity,
+  removeItem,
+}: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   // Toggle Menu
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -85,7 +96,10 @@ const Header = ({ currentIndex }: HeaderProps) => {
           {/* Profile */}
           <div className="profile-section">
             <div className="cart">
-              <img src={cartImg} alt="" />
+              <img src={cartImg} alt="cart" />
+              {totalQuantity > 0 && (
+                <span className="cart-count">{totalQuantity}</span>
+              )}
             </div>
 
             <div className="avatar">
@@ -93,7 +107,12 @@ const Header = ({ currentIndex }: HeaderProps) => {
             </div>
           </div>
         </nav>
-        {/* <Cart currentIndex={currentIndex} /> */}
+        <Cart
+          currentIndex={currentIndex}
+          getTotal={getTotal}
+          quantity={quantity}
+          removeItem={removeItem}
+        />
       </header>
     </>
   );

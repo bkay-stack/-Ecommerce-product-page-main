@@ -75,6 +75,23 @@ nav {
   object-fit: contain;
 }
 
+/* /* cart count * */
+
+.cart-count {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  transform: translate(80%, -200%);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+
 /* Menu nav  */
 @media screen and (max-width: 500px) {
   header {

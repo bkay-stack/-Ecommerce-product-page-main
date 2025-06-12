@@ -93,9 +93,7 @@ function App() {
       if (existingItem) {
         // If it's already in the cart, increase the quantity
         return prev.map((item) =>
-          item.id === id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
+          item.id === id ? { ...item, quantity: quantity } : item
         );
       } else {
         // Add new item with given quantity
@@ -115,9 +113,9 @@ function App() {
   };
 
   // Delete item from cart
-  // const removeFromCart = (id: number) => {
-  //   setCartItems((prev) => prev.filter((item) => item.id !== id));
-  // };
+  const removeFromCart = (id: number) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
 
   useEffect(() => {
     console.log("🛒 Cart Updated:", cartItems);
@@ -125,7 +123,14 @@ function App() {
 
   return (
     <>
-      <Header currentIndex={currentIndex} />
+      <Header
+        currentIndex={currentIndex}
+        // quantity={quantity}
+        getTotal={getCartTotal}
+        cartItems={cartItems}
+        quantity={quantity}
+        removeItem={removeFromCart}
+      />
       <Carousel
         currentIndex={currentIndex}
         setCurrentIndex={setCurrentIndex}
