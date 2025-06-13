@@ -12,6 +12,7 @@ type HeaderProps = {
   getTotal: () => number;
   cartItems: CartItem[];
   removeItem: (id: number) => void;
+  setCartItems: (items: CartItem[]) => void;
 };
 const Header = ({
   currentIndex,
@@ -19,8 +20,15 @@ const Header = ({
   getTotal,
   quantity,
   removeItem,
+  setCartItems,
 }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const toggleCart = () => {
+    setCartOpen(!cartOpen);
+    console.log("clicked :", cartOpen);
+  };
 
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   // Toggle Menu
@@ -95,7 +103,10 @@ const Header = ({
 
           {/* Profile */}
           <div className="profile-section">
-            <div className="cart">
+            <div
+              className={`cart-icon ${cartOpen ? "active" : ""}`}
+              onClick={toggleCart}
+            >
               <img src={cartImg} alt="cart" />
               {totalQuantity > 0 && (
                 <span className="cart-count">{totalQuantity}</span>
@@ -107,13 +118,16 @@ const Header = ({
             </div>
           </div>
         </nav>
-        <Cart
-          currentIndex={currentIndex}
-          getTotal={getTotal}
-          quantity={quantity}
-          removeItem={removeItem}
-          cartItems={cartItems}
-        />
+        {cartOpen && (
+          <Cart
+            currentIndex={currentIndex}
+            getTotal={getTotal}
+            quantity={quantity}
+            removeItem={removeItem}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+          />
+        )}
       </header>
     </>
   );

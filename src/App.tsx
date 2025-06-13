@@ -130,6 +130,7 @@ function App() {
         cartItems={cartItems}
         quantity={quantity}
         removeItem={removeFromCart}
+        setCartItems={setCartItems}
       />
       <Carousel
         currentIndex={currentIndex}

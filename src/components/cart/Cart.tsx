@@ -8,6 +8,7 @@ type CartProps = {
   quantity: number;
   removeItem: (id: number) => void;
   cartItems: CartItem[];
+  setCartItems: (items: CartItem[]) => void;
 };
 // Type annotation for props
 export const Cart: React.FC<CartProps> = ({
@@ -16,7 +17,27 @@ export const Cart: React.FC<CartProps> = ({
   quantity,
   removeItem,
   cartItems,
+  setCartItems,
 }: CartProps) => {
+  const checkout = () => {
+    if (cartItems.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    // Optional: confirm with the user
+    const confirmed = window.confirm(
+      "Are you sure you want to complete the purchase?"
+    );
+    if (!confirmed) return;
+
+    // Clear the cart
+    setCartItems([]);
+
+    // Optional: success feedback
+    alert("Thank you for your purchase!");
+  };
+
   return (
     <div className="cart-container">
       <div className="cart-content">
@@ -55,7 +76,7 @@ export const Cart: React.FC<CartProps> = ({
               </div>
             </div>
 
-            <div className="btn-wrapper">
+            <div className="btn-wrapper" onClick={checkout}>
               <button className="cart-button">Checkout</button>
             </div>
           </>

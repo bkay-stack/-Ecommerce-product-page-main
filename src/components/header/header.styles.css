@@ -77,6 +77,16 @@ nav {
 
 /* /* cart count * */
 
+.cart {
+  outline: 1px solid red;
+  cursor: pointer;
+  /* position: relative; */
+}
+
+.cart.active {
+  display: block;
+}
+
 .cart-count {
   background-color: var(--color-orange);
   color: var(--color-white);
