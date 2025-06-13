@@ -112,6 +112,7 @@ const Header = ({
           getTotal={getTotal}
           quantity={quantity}
           removeItem={removeItem}
+          cartItems={cartItems}
         />
       </header>
     </>
