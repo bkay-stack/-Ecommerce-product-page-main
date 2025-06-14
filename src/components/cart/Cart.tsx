@@ -36,6 +36,10 @@ export const Cart: React.FC<CartProps> = ({
 
     // Optional: success feedback
     alert("Thank you for your purchase!");
+
+    //
+    setCartItems([]);
+    localStorage.removeItem("cartItems");
   };
 
   return (

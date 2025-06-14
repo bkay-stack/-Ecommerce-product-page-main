@@ -17,6 +17,33 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [quantity, setQuantity] = useState(1);
+  const [isCartLoaded, setIsCartLoaded] = useState(false);
+
+  // STEP 1: Load cart data first (runs once on startup)
+  useEffect(() => {
+    try {
+      const storedCart = localStorage.getItem("cartItems");
+      if (storedCart) {
+        const parsedCart = JSON.parse(storedCart);
+        if (Array.isArray(parsedCart)) {
+          setCartItems(parsedCart);
+        }
+      }
+    } catch (error) {
+      console.error("Error parsing cart from localStorage", error);
+    } finally {
+      setIsCartLoaded(true);
+    }
+  }, []);
+
+  // STEP 2: Save cart data (only after initial load is complete)
+  useEffect(() => {
+    if (isCartLoaded) {
+      // ← This prevents overwriting on initial render
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      console.log("Cart saved to localStorage:", cartItems);
+    }
+  }, [cartItems, isCartLoaded]);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % productImages.length);
@@ -48,11 +75,11 @@ function App() {
           ...prev,
           {
             id,
-            src: productImages[0].src, // assuming first product
+            src: productImages[0].src,
             alt: productImages[0].alt,
             thumbnail: productImages[0].thumbnail,
             price: 125,
-            quantity: 1, // start with 0 quantity
+            quantity: 1,
           },
         ];
       }
@@ -80,18 +107,13 @@ function App() {
     );
   };
 
-  // Get quantity of item in cart by id
-  // const getQuantity = (id: number) => {
-  //   return cartItems.find((item) => item.id === id)?.quantity || 0;
-  // };
-
-  // Add to cart functionality can be added here later
+  // Add to cart functionality
   const addToCart = (id: number, quantity: number) => {
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === id);
 
       if (existingItem) {
-        // If it's already in the cart, increase the quantity
+        // If it's already in the cart, update the quantity
         return prev.map((item) =>
           item.id === id ? { ...item, quantity: quantity } : item
         );
@@ -117,15 +139,10 @@ function App() {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  useEffect(() => {
-    console.log("🛒 Cart Updated:", cartItems);
-  }, [cartItems]);
-
   return (
     <>
       <Header
         currentIndex={currentIndex}
-        // quantity={quantity}
         getTotal={getCartTotal}
         cartItems={cartItems}
         quantity={quantity}
