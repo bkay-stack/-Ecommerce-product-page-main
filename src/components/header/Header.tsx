@@ -107,14 +107,14 @@ const Header = ({
               className={`cart-icon ${cartOpen ? "active" : ""}`}
               onClick={toggleCart}
             >
-              <img src={cartImg} alt="cart" />
+              <img src={cartImg} alt="cart" className="cart-icon" />
               {totalQuantity > 0 && (
                 <span className="cart-count">{totalQuantity}</span>
               )}
             </div>
 
             <div className="avatar">
-              <img src={profileImg} alt="" />
+              <img src={profileImg} alt="" className="profile-img" />
             </div>
           </div>
         </nav>

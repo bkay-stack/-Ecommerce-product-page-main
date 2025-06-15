@@ -1,6 +1,6 @@
 import React from "react";
 import "./cart.styles.css";
-import { productImages } from "../../data/productImages";
+import { productImages } from "../../../public/data/productImages";
 
 type CartProps = {
   currentIndex: number;

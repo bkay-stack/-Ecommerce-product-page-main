@@ -1,5 +1,5 @@
 import "./carosusel.styles.css";
-import { productImages } from "../../data/productImages";
+import { productImages } from "../../../public/data/productImages";
 import arrowIMGleft from "../../assets/images/icon-next.svg";
 import arrowIMGright from "../../assets/images/icon-previous.svg";
 import plusIcon from "../../assets/images/icon-plus.svg";
