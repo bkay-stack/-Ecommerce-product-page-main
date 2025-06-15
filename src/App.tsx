@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "./components/header/Header";
 import { Carousel } from "./components/image-carousel/Carousel";
-import { productImages } from "../public/data/productImages";
+import { productImages } from "../public/images/data/productImages";
 
 type CartItem = {
   id: number;
