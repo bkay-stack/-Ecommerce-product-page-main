@@ -136,8 +136,8 @@
   .cart-content {
     margin: 1rem;
     height: 30vh;
-    transform: translateX(900px);
-    transform: translateY(-10%);
+    transform: translate(210%, -10%);
+
     width: 50%;
   }
 }
