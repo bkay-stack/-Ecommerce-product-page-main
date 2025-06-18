@@ -6,6 +6,14 @@ import cartImg from "../../assets/images/icon-cart.svg";
 import Hamburger from "../ham-menu/Hamburger";
 import { Cart } from "../cart/Cart";
 
+type CartItem = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string; // or whatever fields your item has
+};
+
 type HeaderProps = {
   currentIndex: number;
   quantity: number;

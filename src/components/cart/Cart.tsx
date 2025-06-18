@@ -1,6 +1,15 @@
 import React from "react";
 import "./cart.styles.css";
-import { productImages } from "../../../public/images/data/productImages";
+import { productImages } from "../../../public/productImages";
+// import { cartItem } from "../../types/cartItem";
+
+type CartItem = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string; // or whatever fields your item has
+};
 
 type CartProps = {
   currentIndex: number;
