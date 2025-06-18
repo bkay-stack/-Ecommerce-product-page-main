@@ -23,5 +23,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "public/images/data", "public/productImages.ts"]
+  "include": [
+    "src",
+    "public/images/data",
+    "public/images/data/productImages.ts"
+  ]
 }
