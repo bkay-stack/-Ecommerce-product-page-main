@@ -19,7 +19,7 @@ function App() {
   const [quantity, setQuantity] = useState(1);
   const [isCartLoaded, setIsCartLoaded] = useState(false);
 
-  // STEP 1: Load cart data first (runs once on startup)
+  //  Load cart data first (runs once on startup)
   useEffect(() => {
     try {
       const storedCart = localStorage.getItem("cartItems");
@@ -36,7 +36,7 @@ function App() {
     }
   }, []);
 
-  // STEP 2: Save cart data (only after initial load is complete)
+  //  Save cart data (only after initial load is complete)
   useEffect(() => {
     if (isCartLoaded) {
       // ← This prevents overwriting on initial render
